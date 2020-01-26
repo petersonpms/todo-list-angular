@@ -1,0 +1,69 @@
+<app-bread-crumb [items]="[{text: 'Tarefas', path: '/'}, {text: pageTitle}]">
+</app-bread-crumb>
+
+<app-page-header
+  [page-title]="pageTitle"
+  button-text="Voltar"
+  button-link="/"
+  button-class="btn-outline-info"
+></app-page-header>
+
+<form [formGroup]="resourceForm" (ngSubmit)="submitForm()">
+  <div class="card">
+    <div class="card-header">
+      Informações sobre a tarefa
+    </div>
+    <div class="card-body">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label>Descrição</label>
+          <input type="text" class="form-control" id="description" formControlName="description">
+          <app-form-field-error [form-control]="resourceForm.get('description')"></app-form-field-error>
+        </div>
+
+        <div class="form-group col-md-2">
+          <label>Data</label>
+          <br />
+          <p-calendar id="date" formControlName="date" inputStyleClass="form-control" dataType="string"
+            dateFormat="dd/mm/yy" [locale]="ptBR" [showButtonBar]="true">
+          </p-calendar>
+
+          <app-form-field-error [form-control]="resourceForm.get('date')"></app-form-field-error>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label>Horário</label>
+          <input type="time" class="form-control" id="time" formControlName="time">
+
+          <app-form-field-error [form-control]="resourceForm.get('time')"></app-form-field-error>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="finished">Realizada?</label>
+          <br />
+          <div class="btn-group">
+            <label (click)="resourceForm.get('finished').setValue(true)"
+              [class.active]="resourceForm.get('finished').value == true" class="btn btn-outline-info">
+              Sim
+            </label>
+            <label (click)="resourceForm.get('finished').setValue(false)"
+              [class.active]="resourceForm.get('finished').value == false" class="btn btn-outline-info">
+              Não
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-danger mt-3" *ngIf="serverErrorMessages">
+    <ul>
+      <li *ngFor="let error of serverErrorMessages">
+        {{error}}
+      </li>
+    </ul>
+  </div>
+
+  <button [disabled]="submittingForm || resourceForm.invalid" type="submit"
+    class="btn btn-info btn-lg float-right mt-3 mb-4">Salvar</button>
+</form>

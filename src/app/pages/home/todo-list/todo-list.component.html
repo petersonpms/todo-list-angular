@@ -1,0 +1,35 @@
+<app-bread-crumb [items]="[{text: 'Tarefas', path: '/'}]">
+</app-bread-crumb>
+
+<app-page-header page-title="Minhas tarefas"
+  button-text="+ Nova tarefa"
+  button-link="new"
+  button-class="btn-info">
+</app-page-header>
+
+<table class="table uk-table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th>Descrição</th>
+      <th>Data</th>
+      <th>Horário</th>
+      <th class="text-center">Realizada?</th>
+      <th class="text-center">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of resources">
+      <td>{{task.description}}</td>
+      <td>{{task.date}}</td>
+      <td>{{task.time}}</td>
+      <td class="text-center">
+        <i [ngClass]="[task.finished ? 'pi pi-thumbs-up text-success' : 'pi pi-thumbs-down text-danger']"></i></td>
+      <td class="text-center">
+        <button title="Editar" [routerLink]="[task.id, 'edit']" class="btn btn-sm btn-outline-info mr-2"><i
+            class="pi pi-pencil"></i></button>
+        <button (click)="deleteResource(task)" title="Excluir" class="btn btn-sm btn-outline-info"><i
+            class="pi pi-times"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
