@@ -7,8 +7,7 @@ import { TaskService } from '../shared/task.service';
 
 @Component({
   selector: 'app-todo-list',
-  templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  templateUrl: './todo-list.component.html'
 })
 export class TodoListComponent extends BaseResultListComponent<Task> {
 

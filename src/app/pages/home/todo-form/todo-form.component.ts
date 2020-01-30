@@ -8,8 +8,7 @@ import { TaskService } from '../shared/task.service';
 
 @Component({
   selector: 'app-todo-form',
-  templateUrl: './todo-form.component.html',
-  styleUrls: ['./todo-form.component.css']
+  templateUrl: './todo-form.component.html'
 })
 export class TodoFormComponent extends BaseResourceFormComponent<Task> {
   ptBR = {
